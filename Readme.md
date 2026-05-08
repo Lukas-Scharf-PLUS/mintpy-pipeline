@@ -70,3 +70,11 @@ docker build \
   -t mintpy-pipeline:0.0.1 \
   -f docker/Dockerfile \
   .
+
+
+  docker run --rm -it \
+  --user root \
+  -v ~/projects/ADUCAT/data:/workspace/data \
+  -w /workspace/data/stack_Ascending_73_20200604_20200628_c2_z2_r6_f0.5 \
+  mintpy-pipeline:0.0.1 \
+  bash

@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-STACK_DIR="${1:?Usage: run_mintpy_full.sh <stack_dir>}"
+ISCE_DIR="${1:?Usage: run_mintpy_full.sh <isce_dir> <mintpy_dir>}"
+MINTPY_DIR="${2:?Usage: run_mintpy_full.sh <isce_dir> <mintpy_dir>}"
 
-cd "${STACK_DIR}"
+cd "${MINTPY_DIR}"
 
-smallbaselineApp.py mintpy.cfg
+smallbaselineApp.py mintpy.cfg \
+  2>&1 | tee "${MINTPY_DIR}/logs/mintpy_full.log"
