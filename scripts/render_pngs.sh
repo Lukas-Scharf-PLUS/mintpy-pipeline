@@ -21,7 +21,7 @@ view.py temporalCoherence.h5 temporalCoherence \
 
 echo "=== Rendering average spatial coherence PNG ==="
 
-view.py avgSpatialCoh.h5 avgSpatialCoh \
+view.py avgSpatialCoh.h5 coherence \
   --save \
   -o png/avgSpatialCoh.png
 
