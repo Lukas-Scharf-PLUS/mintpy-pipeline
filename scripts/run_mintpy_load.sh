@@ -9,21 +9,21 @@ mkdir -p "${MINTPY_DIR}"
 echo "=== Generating MintPy config ==="
 
 cat > "${MINTPY_DIR}/mintpy.cfg" << EOF
-mintpy.load.processor = isce
+mintpy.load.processor=isce
 
-mintpy.load.metaFile = ${ISCE_DIR}/reference/IW*.xml
-mintpy.load.baselineDir = ${ISCE_DIR}/baselines
+mintpy.load.metaFile=${ISCE_DIR}/reference/IW*.xml
+mintpy.load.baselineDir=${ISCE_DIR}/baselines
 
-mintpy.load.unwFile = ${ISCE_DIR}/merged/interferograms/*/filt_fine.unw
-mintpy.load.corFile = ${ISCE_DIR}/merged/interferograms/*/filt_fine.cor
+mintpy.load.unwFile=${ISCE_DIR}/merged/interferograms/*/filt_fine.unw
+mintpy.load.corFile=${ISCE_DIR}/merged/interferograms/*/filt_fine.cor
 
-mintpy.load.demFile = ${ISCE_DIR}/merged/geom_reference/hgt.rdr
-mintpy.load.lookupYFile = ${ISCE_DIR}/merged/geom_reference/lat.rdr
-mintpy.load.lookupXFile = ${ISCE_DIR}/merged/geom_reference/lon.rdr
+mintpy.load.demFile=${ISCE_DIR}/merged/geom_reference/hgt.rdr
+mintpy.load.lookupYFile=${ISCE_DIR}/merged/geom_reference/lat.rdr
+mintpy.load.lookupXFile=${ISCE_DIR}/merged/geom_reference/lon.rdr
 
-mintpy.subset.lalo = 48.17:48.23,16.34:16.38
+mintpy.subset.lalo=48.17:48.23,16.34:16.38
 
-mintpy.troposphericDelay.method = no
+mintpy.troposphericDelay.method=no
 EOF
 
 echo "=== MintPy config ==="
