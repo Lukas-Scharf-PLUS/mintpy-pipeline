@@ -7,11 +7,17 @@ SUBSET_LALO="${3:-}"
 
 # parameters for atmosphric correction
 TROPO_METHOD="${4:-no}"
-WEATHER_MODEL="${5:-ERA5}"
-WEATHER_DIR="${6:-/data/weather}"
+
+# fixed weather settings
+WEATHER_MODEL="ERA5"
+WEATHER_DIR="/data/weather"
+
+# minimal temporal coherence
+MIN_TEMP_COH="${4:-0.7}"
 
 
 mkdir -p "${MINTPY_DIR}"
+mkdir -p "${MINTPY_DIR}/logs"
 
 echo "=== Generating MintPy config ==="
 
@@ -27,6 +33,8 @@ mintpy.load.corFile=${ISCE_DIR}/merged/interferograms/*/filt_fine.cor
 mintpy.load.demFile=${ISCE_DIR}/merged/geom_reference/hgt.rdr
 mintpy.load.lookupYFile=${ISCE_DIR}/merged/geom_reference/lat.rdr
 mintpy.load.lookupXFile=${ISCE_DIR}/merged/geom_reference/lon.rdr
+
+mintpy.networkInversion.minTempCoh=${MIN_TEMP_COH}
 
 mintpy.troposphericDelay.method=${TROPO_METHOD}
 
