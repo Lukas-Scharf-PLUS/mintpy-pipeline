@@ -13,7 +13,7 @@ WEATHER_MODEL="ERA5"
 WEATHER_DIR="/data/weather"
 
 # minimal temporal coherence
-MIN_TEMP_COH="${4:-0.7}"
+MIN_TEMP_COH="${5:-0.7}"
 
 
 mkdir -p "${MINTPY_DIR}"

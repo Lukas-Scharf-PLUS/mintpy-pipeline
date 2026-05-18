@@ -1,25 +1,42 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-MINTPY_DIR="${1:?Usage: geocode.sh <mintpy_dir> <south> <north> <west> <east>}"
+MINTPY_DIR="${1:?Usage: standardized_geocode.sh <mintpy_dir> <subset_lalo>}"
 
-SOUTH="${2:?Missing south}"
-NORTH="${3:?Missing north}"
-WEST="${4:?Missing west}"
-EAST="${5:?Missing east}"
-
+SUBSET_LALO="${2:?Missing subset_lalo}"
 
 # optional output resolution in degree
-LAT_STEP="${6:-0.0001}"
-LON_STEP="${7:-0.0001}"
+LAT_STEP="${3:-0.0001}"
+LON_STEP="${4:-0.0001}"
 
-mkdir -p "${MINTPY_DIR}/geo_web"
+mkdir -p "${MINTPY_DIR}/geo_standardized"
 
 echo "=== Geocoding MintPy products ==="
 
 cd "${MINTPY_DIR}"
 
 LOOKUP_FILE="${MINTPY_DIR}/inputs/geometryRadar.h5"
+
+# ---------------------------------------------------------
+# convert MintPy subset format to SNWE
+# format:
+# 48.17:48.23,16.34:16.38
+# ---------------------------------------------------------
+
+LAT_PART=$(echo "${SUBSET_LALO}" | cut -d',' -f1)
+LON_PART=$(echo "${SUBSET_LALO}" | cut -d',' -f2)
+
+SOUTH=$(echo "${LAT_PART}" | cut -d':' -f1)
+NORTH=$(echo "${LAT_PART}" | cut -d':' -f2)
+
+WEST=$(echo "${LON_PART}" | cut -d':' -f1)
+EAST=$(echo "${LON_PART}" | cut -d':' -f2)
+
+echo "Using bbox:"
+echo "SOUTH=${SOUTH}"
+echo "NORTH=${NORTH}"
+echo "WEST=${WEST}"
+echo "EAST=${EAST}"
 
 # ---------------------------------------------------------
 # choose products dynamically
@@ -36,7 +53,6 @@ PRODUCTS=()
 [[ -f timeseries.h5 ]] && PRODUCTS+=("timeseries.h5")
 [[ -f timeseries_demErr.h5 ]] && PRODUCTS+=("timeseries_demErr.h5")
 
-# optional ERA5 products
 [[ -f timeseries_ERA5.h5 ]] && PRODUCTS+=("timeseries_ERA5.h5")
 [[ -f velocity_ERA5.h5 ]] && PRODUCTS+=("velocity_ERA5.h5")
 

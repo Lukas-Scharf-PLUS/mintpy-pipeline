@@ -19,19 +19,22 @@ NORTH="48.23"
 WEST="16.34"
 EAST="16.38"
 
-# MintPy subset format
-SUBSET_LALO="${SOUTH}:${NORTH},${WEST}:${EAST}"
+# default MintPy subset format
+DEFAULT_SUBSET_LALO="${SOUTH}:${NORTH},${WEST}:${EAST}"
+
+# allow override from input parameter
+SUBSET_LALO="${3:-$DEFAULT_SUBSET_LALO}"
 
 # Geocoding bbox format
 SNWE_ARGS="${SOUTH} ${NORTH} ${WEST} ${EAST}"
 
 # atmospheric correction
-TROPO_METHOD="${3:-no}"
-WEATHER_MODEL="${4:-ERA5}"
-WEATHER_DIR="${5:-/data/weather}"
+TROPO_METHOD="${4:-no}"
+WEATHER_MODEL="ERA5"
+WEATHER_DIR="/data/weather"
 
 # minimal temporal coherence
-MIN_TEMP_COH="${6:-0.7}"
+MIN_TEMP_COH="${5:-0.7}"
 
 mkdir -p "${MINTPY_DIR}/logs"
 
@@ -71,8 +74,6 @@ echo "=== Running MintPy load_data ==="
     "$MINTPY_DIR" \
     "$SUBSET_LALO" \
     "$TROPO_METHOD" \
-    "$WEATHER_MODEL" \
-    "$WEATHER_DIR" \
     "$MIN_TEMP_COH"
 
 echo "=== Running full MintPy workflow ==="
