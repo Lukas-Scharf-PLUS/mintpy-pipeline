@@ -87,6 +87,10 @@ apply_mask \
     "geo_velocity_ERA5.h5" \
     "geo_velocity_ERA5_commonMask.h5"
 
+apply_mask \
+    "geo_avgSpatialCoh.h5" \
+    "geo_avgSpatialCoh_commonMask.h5"
+
 # =========================================================
 # DESCENDING PRODUCTS
 # =========================================================
@@ -122,6 +126,10 @@ apply_mask \
 apply_mask \
     "geo_velocity_ERA5.h5" \
     "geo_velocity_ERA5_commonMask.h5"
+
+apply_mask \
+    "geo_avgSpatialCoh.h5" \
+    "geo_avgSpatialCoh_commonMask.h5"
 
 echo
 echo "=== Common mask application completed ==="
