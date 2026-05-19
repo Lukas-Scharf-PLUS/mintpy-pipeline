@@ -44,3 +44,18 @@ docker run --rm -it \
   pyaps
 
 
+## References
+
+This workflow uses the following open-source software:
+
+- MintPy
+
+If you use this workflow in scientific work, please cite:
+
+Yunjun, Z., Fattahi, H., & Amelung, F. (2019).
+*Small baseline InSAR time series analysis: Unwrapping error correction and noise reduction*.
+Computers & Geosciences, 133, 104331.
+https://doi.org/10.1016/j.cageo.2019.104331
+
+MintPy repository:
+https://github.com/insarlab/MintPy

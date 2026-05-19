@@ -5,8 +5,8 @@ ASC_DIR="${1:?Usage: apply_common_mask.sh <asc_mintpy_dir> <desc_mintpy_dir> <co
 DESC_DIR="${2:?Usage: apply_common_mask.sh <asc_mintpy_dir> <desc_mintpy_dir> <common_mask_file>}"
 COMMON_MASK="${3:?Usage: apply_common_mask.sh <asc_mintpy_dir> <desc_mintpy_dir> <common_mask_file>}"
 
-ASC_GEO_DIR="${ASC_DIR}/geo_web"
-DESC_GEO_DIR="${DESC_DIR}/geo_web"
+ASC_GEO_DIR="${ASC_DIR}/geo_standardized"
+DESC_GEO_DIR="${DESC_DIR}/geo_standardized"
 
 echo "=== Applying common ASC/DESC mask ==="
 

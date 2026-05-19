@@ -7,8 +7,8 @@ DESC_DIR="${2:?Usage: create_common_mask.sh <asc_mintpy_dir> <desc_mintpy_dir> [
 # optional coherence threshold
 THRESHOLD="${3:-0.7}"
 
-ASC_GEO_DIR="${ASC_DIR}/geo_web"
-DESC_GEO_DIR="${DESC_DIR}/geo_web"
+ASC_GEO_DIR="${ASC_DIR}/geo_standardized"
+DESC_GEO_DIR="${DESC_DIR}/geo_standardized"
 
 ASC_COH="${ASC_GEO_DIR}/geo_temporalCoherence.h5"
 DESC_COH="${DESC_GEO_DIR}/geo_temporalCoherence.h5"

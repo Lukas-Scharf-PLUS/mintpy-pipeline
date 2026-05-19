@@ -4,8 +4,8 @@ set -euo pipefail
 ASC_DIR="${1:?Usage: LOS_decomposition.sh <asc_mintpy_dir> <desc_mintpy_dir>}"
 DESC_DIR="${2:?Usage: LOS_decomposition.sh <asc_mintpy_dir> <desc_mintpy_dir>}"
 
-ASC_GEO_DIR="${ASC_DIR}/geo_web"
-DESC_GEO_DIR="${DESC_DIR}/geo_web"
+ASC_GEO_DIR="${ASC_DIR}/geo_standardized"
+DESC_GEO_DIR="${DESC_DIR}/geo_standardized"
 
 # ---------------------------------------------------------
 # input products

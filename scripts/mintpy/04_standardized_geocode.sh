@@ -75,7 +75,7 @@ for FILE in "${PRODUCTS[@]}"; do
         -l "${LOOKUP_FILE}" \
         --bbox "${SOUTH}" "${NORTH}" "${WEST}" "${EAST}" \
         --lalo-step "${LAT_STEP}" "${LON_STEP}" \
-        --outdir "${MINTPY_DIR}/geo_web" \
+        --outdir "${MINTPY_DIR}/geo_standardized" \
         --update
 
 done
