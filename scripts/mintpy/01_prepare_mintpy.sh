@@ -5,12 +5,8 @@ ISCE_DIR="${1:?Usage: run_mintpy_load.sh <isce_dir> <mintpy_dir>}"
 MINTPY_DIR="${2:?Usage: run_mintpy_load.sh <isce_dir> <mintpy_dir>}"
 SUBSET_LALO="${3:-}"
 
-# parameters for atmosphric correction
-TROPO_METHOD="${4:-no}"
-
-# fixed weather settings
-WEATHER_MODEL="ERA5"
-WEATHER_DIR="/data/weather"
+# parameter for reference point
+REF_LALO="${4:-}"
 
 # minimal temporal coherence
 MIN_TEMP_COH="${5:-0.7}"
@@ -36,23 +32,20 @@ mintpy.load.lookupXFile=${ISCE_DIR}/merged/geom_reference/lon.rdr
 
 mintpy.networkInversion.minTempCoh=${MIN_TEMP_COH}
 
-mintpy.troposphericDelay.method=${TROPO_METHOD}
+mintpy.troposphericDelay.method = no
 
 EOF
+
+# add common reference point coordinates
+if [[ -n "${REF_LALO}" ]]; then
+    echo "mintpy.reference.lalo=${REF_LALO}" >> "${MINTPY_DIR}/mintpy.cfg"
+fi
 
 # add lat long parameter when set as parameter
 if [[ -n "${SUBSET_LALO}" ]]; then
     echo "mintpy.subset.lalo=${SUBSET_LALO}" >> "${MINTPY_DIR}/mintpy.cfg"
 fi
 
-# add weather model parameters when set
-if [[ "${TROPO_METHOD}" == "pyaps" ]]; then
-    cat >> "${MINTPY_DIR}/mintpy.cfg" << EOF
-
-mintpy.troposphericDelay.weatherModel=${WEATHER_MODEL}
-mintpy.troposphericDelay.weatherDir=${WEATHER_DIR}
-EOF
-fi
 
 echo "=== MintPy config ==="
 cat "${MINTPY_DIR}/mintpy.cfg"
