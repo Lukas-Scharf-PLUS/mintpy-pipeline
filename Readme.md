@@ -6,10 +6,10 @@ docker build   -t ghcr.io/lukas-scharf-plus/mintpy-pipeline:0.1.0   -f docker/Do
 
 
 Basic run of steps
- - 01_run_mintpy_load.sh
+ - 01_prepare_mintpy.sh
  - 02_run_mintpy_full.sh
- - 03_render_pngs.sh
- - 04_standardized_geocode.sh
+ - 03_apply_pyaps.sh
+ - 05_standardized_geocode.sh
 
 
 
@@ -18,8 +18,9 @@ Basic run of steps
 1 = ISCE_DIR
 2 = MINTPY_DIR
 3 = SUBSET_LALO
-4 = TROPO_METHOD
+4 = REF_LALO
 5 = MIN_TEMP_COH
+6 = TROPO_METHOD
 
 
 Run individual scripts:
@@ -61,15 +62,8 @@ ghcr.io/lukas-scharf-plus/mintpy-pipeline:0.1.0
 /data/Mintpy_output/stack_Ascending_73_20200604_20200628_c2_z2_r6_f0.5_mintpy
 
 
-3. render pngs
 
-docker run --rm -it \
-  -v ~/projects/ADUCAT/data:/data \
-  ghcr.io/lukas-scharf-plus/mintpy-pipeline:0.1.0 \
-  /scripts/mintpy/03_render_pngs.sh \
-  /data/Mintpy_output/stack_Ascending_73_20200604_20200628_c2_z2_r6_f0.5_mintpy
-
-  4. standardized_geocode
+3. . standardized_geocode
 
 docker run --rm -it   
 -v ~/projects/ADUCAT/data:/data   
@@ -79,17 +73,6 @@ ghcr.io/lukas-scharf-plus/mintpy-pipeline:0.1.0
 "48.17:48.23,16.34:16.38"
 
 
-
-
-Full wrapper script:
-
-docker run --rm -it \
-  --user root
-  -v ~/projects/ADUCAT/data:/data \
-  ghcr.io/lukas-scharf-plus/mintpy-pipeline:0.1.0 \
-  /scripts/run_pipeline.sh \
-  /data/stack_Ascending_73_20200604_20200628_c2_z2_r6_f0.5 \
-  /data/stack_Ascending_73_20200604_20200628_c2_z2_r6_f0.5_mintpy
 
 
 With ERA5 correction:
@@ -133,16 +116,6 @@ ghcr.io/lukas-scharf-plus/mintpy-pipeline:0.1.1
 /data/Mintpy_output/stack_Descending_124_20200602_20200626_c2_z2_r6_f0.5_mintpy   
 /data/Mintpy_output/common_mask/common_mask.h5
 
-
-
-7. apply common ref point
-
-docker run --rm -it \
-  -v ~/projects/ADUCAT/data:/data \
-  ghcr.io/lukas-scharf-plus/mintpy-pipeline:0.1.1 \
-  /scripts/postprocess/07_apply_common_reference.sh \
-  /data/Mintpy_output/stack_Ascending_73_20200604_20200628_c2_z2_r6_f0.5_mintpy \
-  /data/Mintpy_output/stack_Descending_124_20200602_20200626_c2_z2_r6_f0.5_mintpy
 
 
 7. LOS decomposition

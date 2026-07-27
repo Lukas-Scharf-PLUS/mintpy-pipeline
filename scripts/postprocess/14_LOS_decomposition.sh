@@ -12,8 +12,8 @@ DESC_GEO_DIR="${DESC_DIR}/geo_standardized"
 # input products
 # ---------------------------------------------------------
 
-ASC_VEL="${ASC_GEO_DIR}/geo_velocity_commonMask_ref.h5"
-DESC_VEL="${DESC_GEO_DIR}/geo_velocity_commonMask_ref.h5"
+ASC_VEL="${ASC_GEO_DIR}/geo_velocity_commonMask.h5"
+DESC_VEL="${DESC_GEO_DIR}/geo_velocity_commonMask.h5"
 
 # standardized geometry products
 ASC_GEOM="${ASC_GEO_DIR}/geo_geometryRadar.h5"
