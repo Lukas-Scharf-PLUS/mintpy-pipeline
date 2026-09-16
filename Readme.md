@@ -1,3 +1,5 @@
+This project is a work in progress. Functionality and correctness are not guaranteed, and any use is at your own risk.
+
 ### In docker container locally:
 
 build image:
